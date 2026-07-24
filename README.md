@@ -1,4 +1,4 @@
-# CMS Assignment
+# CONTENT MANAGEMENT SYSYTEM
 
 ## About the Project
 
