@@ -10,13 +10,18 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  if (typeof window !== "undefined") {
-    const token = localStorage.getItem("token");
+  const token =
+    typeof window !== "undefined"
+      ? localStorage.getItem("token")
+      : null;
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+  console.log("Token:", token);
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
+
+  console.log("Headers:", config.headers);
 
   return config;
 });
