@@ -17,12 +17,6 @@ const login = async (req, res) => {
       email: email.toLowerCase(),
     });
 
-    console.log("================================");
-    console.log("Login Attempt");
-    console.log("Email:", email);
-    console.log("Admin Found:", admin);
-    console.log("================================");
-
     if (!admin) {
       return res.status(401).json({
         success: false,
@@ -32,8 +26,6 @@ const login = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, admin.password);
 
-    console.log("Password Match:", isMatch);
-
     if (!isMatch) {
       return res.status(401).json({
         success: false,
@@ -42,8 +34,6 @@ const login = async (req, res) => {
     }
 
     const token = generateToken(admin._id);
-
-    console.log("Login Successful");
 
     return res.status(200).json({
       success: true,
